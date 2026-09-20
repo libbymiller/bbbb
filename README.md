@@ -4,7 +4,7 @@ Scripts for the BBBB project
 
 # Pi 4
 
-## SD card
+## SD card
 
 Burn an SD card, bookworm ('legacy') 64-bit lite. Trixie doesn't work yet. Use password rather than keys for now so we can all login if need be.
 
@@ -12,6 +12,7 @@ Burn an SD card, bookworm ('legacy') 64-bit lite. Trixie doesn't work yet. Use p
 
 Log in, install git
 
+    sudo apt-get install git
 
 Install inky phat examples
 
@@ -44,9 +45,9 @@ Add rc.local - see files in this directory
     sudo systemctl start rc-local
     sudo systemctl status rc-local
 
-# test birdnet pi with e.g. merlin
+# Test birdnet pi with e.g. merlin
 
-Play close to mic; blackbird works well, no other speakng or noise as it will ignore it
+Play file close to mic; blackbird works well, no other speakng or noise as it will ignore it
 
 # MQTT
 
