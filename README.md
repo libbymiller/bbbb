@@ -14,6 +14,10 @@ Log in, install git
 
     sudo apt-get install git
 
+Install this repo
+
+    git clone https://github.com/libbymiller/bbbb
+
 Install inky phat examples
 
     git clone https://github.com/pimoroni/inky
@@ -24,9 +28,15 @@ let it create a virtual env
 let it create the examples and install the requirements for them
 reboot
 
-test (old inky phat)
+## test (old inky phat)
 
     /home/pi/.virtualenvs/pimoroni/bin/python3 /home/pi/inky/examples/name-badge.py -n "_IP=$(hostname -I)" -t phat --colour red
+
+## test (new spectra6)
+
+
+    cp bbbb/spectra6/hello_world.py  /home/pi/inky/examples/spectra6/
+    /home/pi/.virtualenvs/pimoroni/bin/python3 /home/pi/inky/examples/spectra6/hello_world.py "_IP=$(hostname -I)"
 
 ## install birdnet-pi
 
@@ -38,7 +48,13 @@ reboot and test by going to hostname.local or the IP from the eink in a browser
 
 Add rc.local - see files in this directory
 
+    # old inky phat
     sudo cp rc.local /etc/rc.local
+
+    # spectra6
+    sudo cp rc.local.spectra6 /etc/rc.local
+
+    # then
     sudo cp rc-local.service /etc/systemd/system/rc-local.service
     sudo chmod +x /etc/rc.local
     sudo systemctl enable rc-local
