@@ -80,5 +80,5 @@ You can add MQTT under settings in birdnet; I've done this before and it works f
 
  * figure out how best to add wifi
  * figure out where to send the MQTT
- ✅ try different eink display - https://shop.pimoroni.com/products/inky-impression?variant=56039376912763
+ * ✅ try different eink display - https://shop.pimoroni.com/products/inky-impression?variant=56039376912763
 
