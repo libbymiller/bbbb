@@ -24,9 +24,7 @@ Install inky phat examples
     cd inky/
     ./install.sh
 
-let it create a virtual env
-let it create the examples and install the requirements for them
-reboot
+let it create a virtual env, let it create the examples and install the requirements for them, then reboot
 
 ## test (old inky phat)
 
@@ -34,8 +32,7 @@ reboot
 
 ## test (new spectra6)
 
-
-    cp bbbb/spectra6/hello_world.py  /home/pi/inky/examples/spectra6/
+    cp /home/pi/bbbb/spectra6/hello_world.py  /home/pi/inky/examples/spectra6/
     /home/pi/.virtualenvs/pimoroni/bin/python3 /home/pi/inky/examples/spectra6/hello_world.py "_IP=$(hostname -I)"
 
 ## install birdnet-pi
@@ -63,11 +60,11 @@ Add rc.local - see files in this directory
 
 # Test birdnet pi with e.g. merlin
 
-Play file close to mic; blackbird works well, no other speakng or noise as it will ignore it
+Play file close to mic; blackbird works well, no other speaking or noise as it will ignore it
 
 # MQTT
 
-You can add MQTT under settings; I've done this before and it works fine, although title needs to be blank or it sends malformed json
+You can add MQTT under settings in birdnet; I've done this before and it works fine, although title needs to be blank or it sends malformed json
 
     {
       "common_name":"$comname",
@@ -83,5 +80,5 @@ You can add MQTT under settings; I've done this before and it works fine, althou
 
  * figure out how best to add wifi
  * figure out where to send the MQTT
- * try different eink display - https://shop.pimoroni.com/products/inky-impression?variant=56039376912763
+ ✅ try different eink display - https://shop.pimoroni.com/products/inky-impression?variant=56039376912763
 
