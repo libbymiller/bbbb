@@ -8,7 +8,7 @@ Scripts for the BBBB project
 
 Burn an SD card, bookworm ('legacy') 64-bit lite. Trixie doesn't work yet. Use password rather than keys for now so we can all login if need be.
 
-## Install eink stuff - old inky phat 
+## Install eink libraries (all pimoroni einks)
 
 Log in, install git
 
