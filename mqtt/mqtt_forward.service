@@ -1,0 +1,15 @@
+[Unit]
+Description=mqtt_forward
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/mqtt/
+ExecStart=/usr/bin/python3 process_and_forward_message.py
+Restart=on-failure
+StandardOutput=syslog
+SyslogIdentifier=server
+Type=idle
+User=pi
+
+[Install]
+WantedBy=multi-user.target

@@ -146,12 +146,17 @@ Then we use a custom python file to send it onwards - see example in this direct
 
     python mqtt/process_and_forward_message.py
 
+add in a systemd file
+
+    sudo cp mqtt/mqtt_forward.service /etc/systemd/system/
+    sudo systemctl enable mqtt_forward.service
+    sudo systemctl start mqtt_forward.service
 
 # TODO
 
  * figure out how best to add wifi - sudo nmtui is a bit of a pain
  * figure out device ids
- * add systemd ffile for the mqtt python stuff
+ * ✅ add systemd ffile for the mqtt python stuff
  * ✅ figure out where to send the MQTT -> to localhost and then to naturetelemetry
  * ✅ try different eink display - https://shop.pimoroni.com/products/inky-impression?variant=56039376912763
 
