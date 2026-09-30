@@ -1,8 +1,8 @@
 # BBBB
 
-Scripts for the BBBB project
+Scripts / instructions for the BBBB project
 
-# Pi 4
+# Pi 4 - wifi / garden install
 
 ## SD card
 
@@ -43,6 +43,47 @@ reboot and test by going to hostname.local or the IP from the eink in a browser
 
 ## show IP on boot on eink screen
 
+First disable IPV6 as per this: https://gist.github.com/lbussy/c65a72ca4b577f5d0b9eafdd2f26d3cc
+
+Check the current state:
+
+    ip -6 address show
+    ip -6 route show
+    sysctl net.ipv6.conf.all.disable_ipv6 net.ipv6.conf.default.disable_ipv6
+
+If you are connected by SSH, check the first address shown here:
+
+    printf '%s\n' "$SSH_CONNECTION"
+
+An address containing : is IPv6. Do not apply the change from that session; it will disconnect immediately. Confirm that IPv4 access, local console access, or another recovery path works first.
+
+Disable IPv6
+
+    sudoedit /etc/sysctl.d/90-disable-ipv6.conf
+
+enter exactly
+
+    # IPv6 is disabled temporarily for a documented compatibility test.
+    net.ipv6.conf.all.disable_ipv6 = 1
+    net.ipv6.conf.default.disable_ipv6 = 1
+
+save and apply it
+
+    sudo sysctl --system
+
+Verify:
+
+    sysctl net.ipv6.conf.all.disable_ipv6 net.ipv6.conf.default.disable_ipv6
+    ip -6 address show
+    ip -6 route show
+
+Both settings should report 1. The IPv6 address and route listings should be empty.
+
+Reboot once before treating the change as persistent:
+
+    sudo reboot
+
+
 Add rc.local - see files in this directory
 
     # old inky phat
@@ -64,7 +105,27 @@ Play file close to mic; blackbird works well, no other speaking or noise as it w
 
 # MQTT
 
-You can add MQTT under settings in birdnet; I've done this before and it works fine, although title needs to be blank or it sends malformed json
+Install mosquitto
+
+    sudo apt install mosquitto mosquitto-clients -y
+
+test mosquitto is working
+    
+in one window (see everything coming in):
+
+    mosquitto_sub -v -h localhost -p 1883 -t '#'
+
+in another:
+
+    mosquitto_pub -h localhost -p 1883 -m '{"foo":"bar"}' -t 'boids'
+
+You can add MQTT under tools-> basic settings -> notifications in the birdnet UI tools: (username: 'birdnet', pwd blank)
+
+Add this in the first box:
+
+    mqtt://localhost:1883/boids
+
+and this in the second (title needs to be blank or it sends malformed json)
 
     {
       "common_name":"$comname",
@@ -75,10 +136,21 @@ You can add MQTT under settings in birdnet; I've done this before and it works f
       "file":"$listenurl"
     }
 
+we'll have to grab the id of the device from the hostname in file, I think.
+
+IMPORTANT: tick 'notify each new detection"
+
+Then we use a custom python file to send it onwards - see example in this directory - process_and_forward_message.py - ask libby for the mqtt servedr etails
+
+    pip3 install paho-mqtt --break-system-packages
+
+    python mqtt/process_and_forward_message.py
+
 
 # TODO
 
- * figure out how best to add wifi
- * figure out where to send the MQTT
+ * figure out how best to add wifi - sudo nmtui is a bit of a pain
+ * figure out device ids
+ * ✅ figure out where to send the MQTT -> to localhost and then to naturetelemetry
  * ✅ try different eink display - https://shop.pimoroni.com/products/inky-impression?variant=56039376912763
 
