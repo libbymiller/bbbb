@@ -151,6 +151,7 @@ Then we use a custom python file to send it onwards - see example in this direct
 
  * figure out how best to add wifi - sudo nmtui is a bit of a pain
  * figure out device ids
+ * add systemd ffile for the mqtt python stuff
  * ✅ figure out where to send the MQTT -> to localhost and then to naturetelemetry
  * ✅ try different eink display - https://shop.pimoroni.com/products/inky-impression?variant=56039376912763
 
