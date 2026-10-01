@@ -119,6 +119,8 @@ Then we use a custom python file to send it onwards - see example in this direct
 
     pip3 install paho-mqtt --break-system-packages
 
+edit mqtt/process_and_forward_message.py to use the correct mqtt server (ask libby)
+
     python mqtt/process_and_forward_message.py
 
 add in a systemd file
