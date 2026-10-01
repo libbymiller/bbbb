@@ -43,13 +43,7 @@ reboot and test by going to hostname.local or the IP from the eink in a browser
 
 ## show IP on boot on eink screen
 
-First disable IPV6 as per this: https://gist.github.com/lbussy/c65a72ca4b577f5d0b9eafdd2f26d3cc
-
-Check the current state:
-
-    ip -6 address show
-    ip -6 route show
-    sysctl net.ipv6.conf.all.disable_ipv6 net.ipv6.conf.default.disable_ipv6
+First disable IPV6:
 
 If you are connected by SSH, check the first address shown here:
 
@@ -59,30 +53,11 @@ An address containing : is IPv6. Do not apply the change from that session; it w
 
 Disable IPv6
 
-    sudoedit /etc/sysctl.d/90-disable-ipv6.conf
+    sudo nano /boot/firmware/cmdline.txt
 
-enter exactly
+add " ipv6.disable=1" to the end
 
-    # IPv6 is disabled temporarily for a documented compatibility test.
-    net.ipv6.conf.all.disable_ipv6 = 1
-    net.ipv6.conf.default.disable_ipv6 = 1
-
-save and apply it
-
-    sudo sysctl --system
-
-Verify:
-
-    sysctl net.ipv6.conf.all.disable_ipv6 net.ipv6.conf.default.disable_ipv6
-    ip -6 address show
-    ip -6 route show
-
-Both settings should report 1. The IPv6 address and route listings should be empty.
-
-Reboot once before treating the change as persistent:
-
-    sudo reboot
-
+check after reboot by looking at ifconfig
 
 Add rc.local - see files in this directory
 
