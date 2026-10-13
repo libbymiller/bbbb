@@ -47,7 +47,7 @@ If you are connected by SSH, check the first address shown here:
 
     printf '%s\n' "$SSH_CONNECTION"
 
-An address containing : is IPv6. Might be worth doing ifconfig to get the IP too.
+An address containing : is IPv6. Might be worth doing ifconfig to get the IPv4 too.
 
 Disable IPv6
 
