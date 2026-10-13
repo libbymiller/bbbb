@@ -59,6 +59,8 @@ check after reboot by looking at ifconfig
 
 Add rc.local - see files in this directory
 
+    cd /home/pi/bbbb
+    
     # old inky phat
     sudo cp rc.local /etc/rc.local
 
