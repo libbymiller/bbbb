@@ -43,13 +43,11 @@ reboot and test by going to hostname.local or the IP from the eink in a browser
 
 ## show IP on boot on eink screen
 
-First disable IPV6:
-
 If you are connected by SSH, check the first address shown here:
 
     printf '%s\n' "$SSH_CONNECTION"
 
-An address containing : is IPv6. Do not apply the change from that session; it will disconnect immediately. Confirm that IPv4 access, local console access, or another recovery path works first.
+An address containing : is IPv6. Might be worth doing ifconfig to get the IP too.
 
 Disable IPv6
 
