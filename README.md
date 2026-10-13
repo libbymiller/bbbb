@@ -12,7 +12,7 @@ Burn an SD card, bookworm ('legacy') 64-bit lite. Trixie doesn't work yet. Use p
 
 Log in, install git
 
-    sudo apt-get install git
+    sudo apt-get install git -y
 
 Install this repo
 
