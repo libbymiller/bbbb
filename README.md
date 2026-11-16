@@ -8,32 +8,9 @@ Scripts / instructions for the BBBB project
 
 Burn an SD card, bookworm ('legacy') 64-bit lite. Trixie doesn't work yet. Use password rather than keys for now so we can all login if need be.
 
-## Install eink libraries (all pimoroni einks)
+## Install eink libraries 
 
-Log in, install git
-
-    sudo apt-get install git -y
-
-Install this repo
-
-    git clone https://github.com/libbymiller/bbbb
-
-Install inky phat examples
-
-    git clone https://github.com/pimoroni/inky
-    cd inky/
-    ./install.sh
-
-let it create a virtual env, let it create the examples and install the requirements for them, then reboot
-
-## test (old inky phat)
-
-    /home/pi/.virtualenvs/pimoroni/bin/python3 /home/pi/inky/examples/name-badge.py -n "_IP=$(hostname -I)" -t phat --colour red
-
-## test (new spectra6)
-
-    cp /home/pi/bbbb/spectra6/hello_world.py  /home/pi/inky/examples/spectra6/
-    /home/pi/.virtualenvs/pimoroni/bin/python3 /home/pi/inky/examples/spectra6/hello_world.py "_IP=$(hostname -I)"
+Use these instructions for the display: https://github.com/kwmc-chris/bbbb-display
 
 ## install birdnet-pi
 
@@ -41,38 +18,13 @@ let it create a virtual env, let it create the examples and install the requirem
 
 reboot and test by going to hostname.local or the IP from the eink in a browser
 
-## show IP on boot on eink screen
-
-If you are connected by SSH, check the first address shown here:
-
-    printf '%s\n' "$SSH_CONNECTION"
-
-An address containing : is IPv6. Might be worth doing ifconfig to get the IPv4 too.
-
-Disable IPv6
+## Disable IPv6
 
     sudo nano /boot/firmware/cmdline.txt
 
 add " ipv6.disable=1" to the end
 
 check after reboot by looking at ifconfig
-
-Add rc.local - see files in this directory
-
-    cd /home/pi/bbbb
-    
-    # old inky phat
-    sudo cp rc.local /etc/rc.local
-
-    # spectra6
-    sudo cp rc.local.spectra6 /etc/rc.local
-
-    # then
-    sudo cp rc-local.service /etc/systemd/system/rc-local.service
-    sudo chmod +x /etc/rc.local
-    sudo systemctl enable rc-local
-    sudo systemctl start rc-local
-    sudo systemctl status rc-local
 
 # Test birdnet pi with e.g. merlin
 
@@ -111,11 +63,11 @@ and this in the second (title needs to be blank or it sends malformed json)
       "file":"$listenurl"
     }
 
-we'll have to grab the id of the device from the hostname in file, I think.
-
 IMPORTANT: tick 'notify each new detection"
 
-Then we use a custom python file to send it onwards - see example in this directory - process_and_forward_message.py - ask libby for the mqtt servedr etails
+We'll have to grab the id of the device from the hostname in file, I think.
+
+Then we use a custom python file to send it onwards - see example in this directory - process_and_forward_message.py - ask libby for the mqtt server details
 
     pip3 install paho-mqtt --break-system-packages
 
@@ -131,9 +83,11 @@ add in a systemd file
 
 # TODO
 
- * figure out how best to add wifi - sudo nmtui is a bit of a pain
- * figure out device ids
- * ✅ add systemd ffile for the mqtt python stuff
+ * add geo to mqtt (at scale required)
+ * replace forwarder with a bridge file
+ * ✅ figure out how best to add wifi - sudo nmtui is a bit of a pain
+ * ✅ figure out device ids
+ * ✅ add systemd file for the mqtt python stuff
  * ✅ figure out where to send the MQTT -> to localhost and then to naturetelemetry
  * ✅ try different eink display - https://shop.pimoroni.com/products/inky-impression?variant=56039376912763
 
