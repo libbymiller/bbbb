@@ -88,7 +88,7 @@ contents:
 
 # TODO
 
- * add geo to mqtt (at scale required)
+ * ✅ add geo to mqtt (at scale required)
  * ✅ replace forwarder with a bridge file
  * ✅ figure out how best to add wifi - sudo nmtui is a bit of a pain
  * ✅ figure out device ids
