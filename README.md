@@ -10,6 +10,7 @@ Burn an SD card, bookworm ('legacy') 64-bit lite. Trixie doesn't work yet. Use p
 
 ## Install eink libraries 
 
+sudo apt-get install git -y
 Use these instructions for the display: https://github.com/kwmc-chris/bbbb-display
 
 ## install birdnet-pi
