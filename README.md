@@ -54,18 +54,9 @@ Add this in the first box:
 
     mqtt://localhost:1883/boids
 
-and this in the second (title needs to be blank or it sends malformed json)
+and this in the second (title needs to be blank or it sends malformed json, json all needs to be on one lone)
 
-    {
-     "common_name":"$comname",
-     "species":"$sciname",
-     "date":"$date",
-     "time":"$time",
-     "confidence":$confidence,
-     "latitude": $latitude,
-     "longitude":$longitude,
-     "file":"$listenurl"
-    }
+    { "common_name":"$comname", "species":"$sciname", "date":"$date", "time":"$time", "confidence":$confidence, "latitude": $latitude, "longitude":$longitude, "file":"$listenurl"}
 
 IMPORTANT: tick 'notify each new detection"
 
