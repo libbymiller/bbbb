@@ -89,7 +89,7 @@ contents:
 
 then 
 
-   sudo systemctl restart mosquitto
+    sudo systemctl restart mosquitto
 
 
 # TODO
