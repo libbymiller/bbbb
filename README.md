@@ -10,7 +10,8 @@ Burn an SD card, bookworm ('legacy') 64-bit lite. Trixie doesn't work yet. Use p
 
 ## Install eink libraries 
 
-sudo apt-get install git -y
+    sudo apt-get install git -y
+    
 Use these instructions for the display: https://github.com/kwmc-chris/bbbb-display
 
 ## install birdnet-pi
@@ -18,14 +19,6 @@ Use these instructions for the display: https://github.com/kwmc-chris/bbbb-displ
     curl -s https://raw.githubusercontent.com/Nachtzuster/BirdNET-Pi/main/newinstaller.sh | bash
 
 reboot and test by going to hostname.local or the IP from the eink in a browser
-
-## Disable IPv6
-
-    sudo nano /boot/firmware/cmdline.txt
-
-add " ipv6.disable=1" to the end
-
-check after reboot by looking at ifconfig
 
 # Test birdnet pi with e.g. merlin
 
@@ -81,6 +74,14 @@ add in a systemd file
     sudo cp mqtt/mqtt_forward.service /etc/systemd/system/
     sudo systemctl enable mqtt_forward.service
     sudo systemctl start mqtt_forward.service
+
+## Disable IPv6
+
+    sudo nano /boot/firmware/cmdline.txt
+
+add " ipv6.disable=1" to the end
+
+check after reboot by looking at ifconfig
 
 # TODO
 
