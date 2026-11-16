@@ -32,9 +32,7 @@ It will automatically reboot. Test by going to hostname.local or the IP from the
 
 Play file close to mic; blackbird works well, no other speaking or noise as it will ignore it
 
-# MQTT
-
-Install mosquitto
+# MQTT - Install mosquitto
 
     sudo apt install mosquitto mosquitto-clients -y
 
@@ -47,6 +45,8 @@ in one window (see everything coming in):
 in another:
 
     mosquitto_pub -h localhost -p 1883 -m '{"foo":"bar"}' -t 'boids'
+
+# MQTT - in birdnet web interface
 
 You can add MQTT under tools-> basic settings -> notifications in the birdnet UI tools: (username: 'birdnet', pwd blank)
 
