@@ -71,6 +71,8 @@ IMPORTANT: tick 'notify each new detection"
 
 We'll have to grab the id of the device from the hostname in file, I think.
 
+## MQTT add a bridge file
+
 Then add a bridge file in /etc/mosquitto/conf.d/
 
     nano bridge.conf
@@ -84,6 +86,10 @@ contents:
     remote_password [ask libby]
     topic # out 0
     log_type all
+
+then 
+
+   sudo systemctl restart mosquitto
 
 
 # TODO
