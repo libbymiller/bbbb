@@ -8,6 +8,14 @@ Scripts / instructions for the BBBB project
 
 Burn an SD card, bookworm ('legacy') 64-bit lite. Trixie doesn't work yet. Use password rather than keys for now so we can all login if need be.
 
+## Disable IPv6
+
+    sudo nano /boot/firmware/cmdline.txt
+
+add " ipv6.disable=1" to the end
+
+check after reboot by looking at ifconfig
+
 ## Install eink libraries 
 
     sudo apt-get install git -y
@@ -18,7 +26,7 @@ Use these instructions for the display: https://github.com/kwmc-chris/bbbb-displ
 
     curl -s https://raw.githubusercontent.com/Nachtzuster/BirdNET-Pi/main/newinstaller.sh | bash
 
-reboot and test by going to hostname.local or the IP from the eink in a browser
+It will automatically reboot. Test by going to hostname.local or the IP from the eink in a browser
 
 # Test birdnet pi with e.g. merlin
 
@@ -44,7 +52,7 @@ You can add MQTT under tools-> basic settings -> notifications in the birdnet UI
 
 Add this in the first box:
 
-    mqtt://localhost:1883/boids
+    mqtt://localhost:1883/birds
 
 and this in the second (title needs to be blank or it sends malformed json)
 
@@ -75,13 +83,6 @@ add in a systemd file
     sudo systemctl enable mqtt_forward.service
     sudo systemctl start mqtt_forward.service
 
-## Disable IPv6
-
-    sudo nano /boot/firmware/cmdline.txt
-
-add " ipv6.disable=1" to the end
-
-check after reboot by looking at ifconfig
 
 # TODO
 
