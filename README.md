@@ -52,42 +52,44 @@ You can add MQTT under tools-> basic settings -> notifications in the birdnet UI
 
 Add this in the first box:
 
-    mqtt://localhost:1883/birds
+    mqtt://localhost:1883/boids
 
 and this in the second (title needs to be blank or it sends malformed json)
 
     {
-      "common_name":"$comname",
-      "species":"$sciname",
-      "date":"$date",
-      "time":"$time",
-      "confidence":$confidence,
-      "file":"$listenurl"
+     "common_name":"$comname",
+     "species":"$sciname",
+     "date":"$date",
+     "time":"$time",
+     "confidence":$confidence,
+     "latitude": $latitude,
+     "longitude":$longitude,
+     "file":"$listenurl"
     }
 
 IMPORTANT: tick 'notify each new detection"
 
 We'll have to grab the id of the device from the hostname in file, I think.
 
-Then we use a custom python file to send it onwards - see example in this directory - process_and_forward_message.py - ask libby for the mqtt server details
+Then add a bridge file in /etc/mosquitto/conf.d/
 
-    pip3 install paho-mqtt --break-system-packages
+    nano bridge.conf
 
-edit mqtt/process_and_forward_message.py to use the correct mqtt server (ask libby)
+contents:
 
-    python mqtt/process_and_forward_message.py
-
-add in a systemd file
-
-    sudo cp mqtt/mqtt_forward.service /etc/systemd/system/
-    sudo systemctl enable mqtt_forward.service
-    sudo systemctl start mqtt_forward.service
+    connection birdnet
+    bridge_protocol_version mqttv311
+    address dev.naturetelemetry.com:1883
+    remote_username [ask libby]
+    remote_password [ask libby]
+    topic # out 0
+    log_type all
 
 
 # TODO
 
  * add geo to mqtt (at scale required)
- * replace forwarder with a bridge file
+ * ✅ replace forwarder with a bridge file
  * ✅ figure out how best to add wifi - sudo nmtui is a bit of a pain
  * ✅ figure out device ids
  * ✅ add systemd file for the mqtt python stuff
